@@ -1,14 +1,14 @@
 execute pathogen#infect()
 
-" wW -> jump forwards to the start of the word
-" eE -> jump forwards to the end of the word
-" bB -> jump backwards to the start of the word
-" ge gE -> jump backwards to the end of the word
-" f* -> jump foward to a certain character on the line
-" F* -> jump backward to a certain character on the line
-" t* -> jump forward before a certain character on the line
-" T* -> jump backward to a certain character on the line
-" ?* -> search backwards with a pattern
+" wW               -> jump forwards to the start of the word
+" eE               -> jump forwards to the end of the word
+" bB               -> jump backwards to the start of the word
+" ge gE            -> jump backwards to the end of the word
+" f*               -> jump foward to a certain character on the line
+" F*               -> jump backward to a certain character on the line
+" t*               -> jump forward before a certain character on the line
+" T*               -> jump backward to a certain character on the line
+" ?*               -> search backwards with a pattern
 
 " find file        -> ctrl+\
 " comment line     -> \ci
