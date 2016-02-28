@@ -1,15 +1,18 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/mark/.oh-my-zsh
+  export ZSH=/home/smoky/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="agnoster"
-# "robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -46,11 +49,11 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx brew z docker)
+plugins=(git ant go grunt nvm node sudo tmux)
 
 # User configuration
 
-export PATH="/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin"
+  export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/local/go/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -79,18 +82,11 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
+#
+#
 alias ssh="ssh -v"
-
-alias viewPlayerLib="wget -O - https://talis.com/lib/player-lib.concat.js | vim -"
-alias viewPlayer="wget -O - https://talis.com/js/player.concat.js | vim -"
-alias viewAppLib="wget -O - https://talis.com/js/app-lib.concat.js | vim -"
-alias viewApp="wget -O - https://talis.com/js/app.concat.js | vim -"
-
-export GOROOT="/usr/local/go"
+export VISUAL=vim
+export EDITOR="$VISUAL"
 
 function collapse_pwd {
     echo $(pwd | sed -e "s,^$HOME,~,")

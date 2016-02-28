@@ -1,5 +1,3 @@
-execute pathogen#infect()
-
 " wW               -> jump forwards to the start of the word
 " eE               -> jump forwards to the end of the word
 " bB               -> jump backwards to the start of the word
@@ -25,7 +23,62 @@ execute pathogen#infect()
 " split vertical   -> :vsplit
 " format json      -> :%!python -mjson.tool
 
+" vundle
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" syntax checking hacks for vim
+Plugin 'scrooloose/syntastic'
+
+" Fuzzy file, buffer, mru, tag, etc finder
+Plugin 'kien/ctrlp.vim'
+
+" lean & mean status/tabline for vim thatś light as air
+Plugin 'bling/vim-airline'
+
+" precision colorscheme for the vim text editor
+Plugin 'altercation/vim-colors-solarized'
+
+" Vastly improved Javascript indentation and syntax support in Vim
+Plugin 'pangloss/vim-javascript'
+
+" A vim plguin which shows a git diff in the gutter (sign column) and stages/reverts hunks
+Plugin 'airblade/vim-gitgutter'
+
+" Vim script for text filtering and alignment
+Plugin 'godlygeek/tabular.git'
+
+" Perform all your vim insert mode completions with Tab
+Plugin 'ervandew/supertab'
+
+" vim-snipmate default snippets
+Plugin 'honza/vim-snippets'
+
+" interactive command execution in Vim
+Plugin 'Shougo/vimproc.vim'
+
+" Go development plugin for Vim
+Plugin 'fatih/vim-go'
+
+" Retro groove color scheme for Vim
+Plugin 'morhetz/gruvbox'
+
+" Vim plugin for the Perl module / CLI script 'ack'
+Plugin 'mileszs/ack.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
 " general settings
+set relativenumber
 set number
 set nowrap
 syntax on
