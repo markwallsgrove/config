@@ -109,3 +109,7 @@ directory_name() {
 
 dir=$'$ $(directory_name)'
 export PROMPT="$dir $PROMPT"
+
+if [ -f ~/.security ]; then
+    source ~/.security
+fi
