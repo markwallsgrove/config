@@ -45,8 +45,6 @@ Plugin 'bling/vim-airline'
 
 " precision colorscheme for the vim text editor
 Plugin 'altercation/vim-colors-solarized'
-
-" Vastly improved Javascript indentation and syntax support in Vim
 Plugin 'pangloss/vim-javascript'
 
 " A vim plguin which shows a git diff in the gutter (sign column) and stages/reverts hunks
