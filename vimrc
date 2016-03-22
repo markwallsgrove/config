@@ -78,14 +78,18 @@ filetype plugin indent on    " required
 " general settings
 set relativenumber
 set number
+
 set nowrap
 syntax on
 filetype plugin indent on
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
 set incsearch
 set hlsearch
+set ignorecase
+set smartcase
 
 " ctrlp
 nnoremap <c-\> :CtrlP<CR>
