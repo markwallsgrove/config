@@ -8,6 +8,7 @@
 " T*               -> jump backward to a certain character on the line
 " ?*               -> search backwards with a pattern
 
+" comment out line -> gc
 " find file        -> ctrl+\
 " comment line     -> \ci
 " change ' to <p>  -> cs'<q>
@@ -70,6 +71,9 @@ Plugin 'morhetz/gruvbox'
 
 " Vim plugin for the Perl module / CLI script 'ack'
 Plugin 'mileszs/ack.vim'
+
+" Comment stuff out
+Plugin 'tpope/vim-commentary'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
