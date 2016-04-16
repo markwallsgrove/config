@@ -84,6 +84,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 #
+alias loginToDockerReg="$(aws --profile production ecr get-login --region eu-west-1)"
 alias ssh="ssh -v"
 export VISUAL=vim
 export EDITOR="$VISUAL"
