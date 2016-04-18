@@ -1,3 +1,11 @@
+" vip -> select paragraph
+" 0 -> go to character 0
+" gU -> selection to uppercase
+" gu -> selection to lowercase
+" % -> find matching bracket
+" * -> highlight current word
+" :nohls -> clear search
+"
 " wW               -> jump forwards to the start of the word
 " eE               -> jump forwards to the end of the word
 " bB               -> jump backwards to the start of the word
@@ -74,6 +82,9 @@ Plugin 'mileszs/ack.vim'
 
 " Comment stuff out
 Plugin 'tpope/vim-commentary'
+
+" True Sublime Text style multiple selections for Vim
+Plugin 'terryma/vim-multiple-cursors'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
