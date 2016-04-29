@@ -117,8 +117,7 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_javascript_checkers = ['jshint', 'eslint']
-let g:syntastic_javascript_jshint_args = '--config '. $HOME .'/.jshintrc'
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_puppet_checkers = ['puppet', 'puppetlint']
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 
