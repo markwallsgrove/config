@@ -53,7 +53,7 @@ plugins=(git ant go grunt nvm node sudo tmux bower composer gitfast jsontools np
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/local/go/bin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/local/go/bin:/home/smoky/workspace/golang/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -84,7 +84,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 #
-alias loginToDockerReg="$(aws --profile production ecr get-login --region eu-west-1)"
+alias toClipBoard="xclip -i -selection clipboard"
+alias loginToDockerReg="aws --profile production ecr get-login --region eu-west-1"
 alias ssh="ssh -v"
 export VISUAL=vim
 export EDITOR="$VISUAL"
@@ -117,3 +118,12 @@ fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+autoload -U compinit && compinit
+autoload -U bashcompinit && bashcompinit
+
+export PATH="$PATH:$HOME/.ec2.cli"
+script_dir=$(dirname $0)
+if [ -f ~/.ec2.cli/completion.bash ]; then
+	source ~/.ec2.cli/completion.bash
+fi

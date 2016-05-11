@@ -1,3 +1,5 @@
 [user]
-	email = mark.wallsgrove@gmail.com
-	name = markwallsgrove
+	email = mark.wallsgrove+git@gmail.com
+	name = Mark Wallsgrove
+[core]
+	pager = less -F -X
