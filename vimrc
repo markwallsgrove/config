@@ -1,10 +1,10 @@
-" vip -> select paragraph
-" 0 -> go to character 0
-" gU -> selection to uppercase
-" gu -> selection to lowercase
-" % -> find matching bracket
-" * -> highlight current word
-" :nohls -> clear search
+" vip              -> select paragraph
+" 0                -> go to character 0
+" gU               -> selection to uppercase
+" gu               -> selection to lowercase
+" %                -> find matching bracket
+" *                -> highlight current word
+" :nohls           -> clear search
 "
 " wW               -> jump forwards to the start of the word
 " eE               -> jump forwards to the end of the word
@@ -15,6 +15,7 @@
 " t*               -> jump forward before a certain character on the line
 " T*               -> jump backward to a certain character on the line
 " ?*               -> search backwards with a pattern
+" ctrl+o           -> marks file for opening (in ctrln)
 
 " comment out line -> gc
 " find file        -> ctrl+\
@@ -85,6 +86,9 @@ Plugin 'tpope/vim-commentary'
 
 " True Sublime Text style multiple selections for Vim
 Plugin 'terryma/vim-multiple-cursors'
+
+" Identify and Irradicate unwanted whitespace at the end of the line
+Plugin 'csexton/trailertrash.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

@@ -49,7 +49,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ant go grunt nvm node sudo tmux bower composer gitfast jsontools npm)
+plugins=(git ant go grunt nvm node sudo tmux bower composer gitfast jsontools npm docker-compose rails)
 
 # User configuration
 
@@ -127,3 +127,6 @@ script_dir=$(dirname $0)
 if [ -f ~/.ec2.cli/completion.bash ]; then
 	source ~/.ec2.cli/completion.bash
 fi
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+source /home/smoky/.rvm/scripts/rvm
