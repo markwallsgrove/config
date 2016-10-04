@@ -102,13 +102,15 @@ set nowrap
 syntax on
 filetype plugin indent on
 set tabstop=4
-set shiftwidth=4
+set shiftwidth=2
 set expandtab
 
 set incsearch
 set hlsearch
 set ignorecase
 set smartcase
+
+set lazyredraw
 
 " ctrlp
 nnoremap <c-\> :CtrlP<CR>
@@ -124,6 +126,15 @@ set statusline+=%*
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_puppet_checkers = ['puppet', 'puppetlint']
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
+let g:go_fmt_command = "goimports"
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -161,3 +172,12 @@ command! -range -nargs=0 -bar Tidyjson <line1>,<line2>!python -m json.tool
 
 " puppet
 let g:puppet_align_hashes = 0
+
+" enable hardcore mode
+" autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+
+" search for highlighted text: http://vim.wikia.com/wiki/Search_for_visually_selected_text
+vnoremap // y/<C-R>"<CR>
+"
+" get rid of accidental trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e

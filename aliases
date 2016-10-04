@@ -1,0 +1,5 @@
+#!/bin/bash
+alias blueprintDb="docker exec -it atlas_postgres_1 psql --user blueprint development_blueprint"
+alias toClipBoard="xclip -i -selection clipboard"
+alias loginToDockerReg="aws --profile production ecr get-login --region eu-west-1"
+alias ssh="ssh -v"

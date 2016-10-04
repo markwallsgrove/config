@@ -49,7 +49,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ant go grunt nvm node sudo tmux bower composer gitfast jsontools npm docker-compose rails)
+plugins=(git ant go grunt nvm node sudo tmux bower composer gitfast jsontools npm docker-compose rails rake)
 
 # User configuration
 
@@ -84,9 +84,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 #
-alias toClipBoard="xclip -i -selection clipboard"
-alias loginToDockerReg="aws --profile production ecr get-login --region eu-west-1"
-alias ssh="ssh -v"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
@@ -116,6 +113,10 @@ if [ -f ~/.security ]; then
     source ~/.security
 fi
 
+if [ -f ~/.aliases ]; then
+    source ~/.aliases
+fi
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
@@ -130,3 +131,6 @@ fi
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 source /home/smoky/.rvm/scripts/rvm
+export PATH="$PATH:/home/smoky/.bin"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
