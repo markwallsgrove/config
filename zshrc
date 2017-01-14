@@ -134,3 +134,8 @@ source /home/smoky/.rvm/scripts/rvm
 export PATH="$PATH:/home/smoky/.bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# bind caps lock to ctrl
+setxkbmap -option ctrl:nocaps
+
+source ~/.exports
