@@ -12,6 +12,8 @@
 " ge gE            -> jump backwards to the end of the word
 " f*               -> jump foward to a certain character on the line
 " F*               -> jump backward to a certain character on the line
+" ;                -> repeat last search going fowards
+" ,                -> repeat last search going backwards
 " t*               -> jump forward before a certain character on the line
 " T*               -> jump backward to a certain character on the line
 " ?*               -> search backwards with a pattern
@@ -36,6 +38,7 @@
 " vundle
 set nocompatible              " be iMproved, required
 filetype off                  " required
+filetype plugin on            " required by gocode
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -90,6 +93,24 @@ Plugin 'terryma/vim-multiple-cursors'
 " Identify and Irradicate unwanted whitespace at the end of the line
 Plugin 'csexton/trailertrash.vim'
 
+" Lightening fast left-right movement vim
+Plugin 'unblevable/quick-scope'
+
+" Asynchronous keyword completion system
+Plugin 'Shougo/deoplete.nvim'
+
+" Golang support
+Plugin 'zchee/deoplete-go'
+
+" gocode
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
+
+" agrep - doesn't seem to support nvim
+" Plugin 'ramele/agrep'
+
+" vim-grepper
+Plugin 'mhinz/vim-grepper'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -102,7 +123,7 @@ set nowrap
 syntax on
 filetype plugin indent on
 set tabstop=4
-set shiftwidth=2
+set shiftwidth=4
 set expandtab
 
 set incsearch
@@ -143,6 +164,23 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠"
 
+" deoplete
+let g:deoplete#enable_at_startup = 1
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" omnifuncs
+augroup omnifuncs
+  autocmd!
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup end
+
+let g:python_host_prog = '/usr/bin/python2.7'
+
 " solarized
 syntax enable
 set background=dark
@@ -178,6 +216,14 @@ let g:puppet_align_hashes = 0
 
 " search for highlighted text: http://vim.wikia.com/wiki/Search_for_visually_selected_text
 vnoremap // y/<C-R>"<CR>
-"
+
 " get rid of accidental trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
+
+" use the system buffer for copy & paste
+set clipboard=unnamedplus
+
+" when switching between buffers open a new tab
+set switchbuf+=usetab,newtab
+
+echo "  >^.^<  hello"
