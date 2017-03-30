@@ -105,9 +105,6 @@ Plugin 'zchee/deoplete-go'
 " gocode
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
 
-" agrep - doesn't seem to support nvim
-" Plugin 'ramele/agrep'
-
 " vim-grepper
 Plugin 'mhinz/vim-grepper'
 
@@ -210,9 +207,6 @@ command! -range -nargs=0 -bar Tidyjson <line1>,<line2>!python -m json.tool
 
 " puppet
 let g:puppet_align_hashes = 0
-
-" enable hardcore mode
-" autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 " search for highlighted text: http://vim.wikia.com/wiki/Search_for_visually_selected_text
 vnoremap // y/<C-R>"<CR>

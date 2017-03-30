@@ -3,3 +3,5 @@
 	name = Mark Wallsgrove
 [core]
 	pager = less -F -X
+[rerere]
+	enabled = true
