@@ -220,4 +220,12 @@ set clipboard=unnamedplus
 " when switching between buffers open a new tab
 set switchbuf+=usetab,newtab
 
+" limit line-length to 80 characters by highlighting column 81 onward
+set colorcolumn=81
+" ... and forcing the cursor onto a new line after 80 characters
+set textwidth=80
+" however, in git commit messages, let's use 72 columns
+autocmd FileType gitcommit set colorcolumn=73
+autocmd FileType gitcommit set textwidth=72
+
 echo "  >^.^<  hello"
