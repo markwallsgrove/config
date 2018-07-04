@@ -1,7 +1,9 @@
 [user]
-	email = mark.wallsgrove+git@gmail.com
+	email = markwallsgrove@users.noreply.github.com
 	name = Mark Wallsgrove
 [core]
 	pager = less -F -X
+	excludesfile = ~/.gitignore
+	fileMode = false
 [rerere]
 	enabled = true

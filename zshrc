@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+ZSH_THEME="avit"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -49,7 +49,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ant go grunt nvm node sudo tmux bower composer gitfast jsontools npm docker-compose rails rake ssh-agent taskwarrior vagrant)
+plugins=(git ant go grunt nvm node sudo tmux bower composer gitfast jsontools npm docker-compose rails rake ssh-agent taskwarrior vagrant kubectl kops completion)
 
 # User configuration
 
@@ -62,11 +62,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='mvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -103,11 +103,12 @@ directory_name() {
         PROMPT_PATH=$(print -P %3~)
         PROMPT_PATH="${PROMPT_PATH%/*}/"
     fi
-    echo "%{$fg_bold[cyan]%}${PROMPT_PATH}%{$reset_color%}%{$fg[red]%}%1~%{$reset_color%}"
+    echo " %{$fg_bold[cyan]%}${PROMPT_PATH}%{$reset_color%}%{$fg[red]%}%1~%{$reset_color%}"
 }
 
-dir=$'$ $(directory_name)'
-export PROMPT="$dir $PROMPT"
+prompt_context () { }
+
+export PROMPT="$PROMPT"
 
 if [ -f ~/.security ]; then
     source ~/.security
@@ -118,7 +119,8 @@ if [ -f ~/.aliases ]; then
 fi
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+nvm use 8.10 2>&1 >/dev/null
 
 autoload -U compinit && compinit
 autoload -U bashcompinit && bashcompinit
@@ -129,8 +131,6 @@ if [ -f ~/.ec2.cli/completion.bash ]; then
 	source ~/.ec2.cli/completion.bash
 fi
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-source /home/smoky/.rvm/scripts/rvm
 export PATH="$PATH:/home/smoky/.bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -139,3 +139,11 @@ export PATH="$PATH:/home/smoky/.bin"
 setxkbmap -option ctrl:nocaps
 
 source ~/.exports
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/smoky/.sdkman"
+[[ -s "/home/smoky/.sdkman/bin/sdkman-init.sh" ]] && source "/home/smoky/.sdkman/bin/sdkman-init.sh"
+
+source "/home/smoky/.sdkman/bin/sdkman-init.sh"
+
+source <(kubectl completion zsh)

@@ -18,6 +18,11 @@
 " T*               -> jump backward to a certain character on the line
 " ?*               -> search backwards with a pattern
 " ctrl+o           -> marks file for opening (in ctrln)
+" yf)              -> yank forward and include round bracket
+" \f               -> load ranger to find a file
+" gx               -> go to website
+" gf               -> go to file
+" ctrl+^           -> go to previous file
 
 " comment out line -> gc
 " find file        -> ctrl+\
@@ -48,7 +53,10 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " syntax checking hacks for vim
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
+
+" Asynchronous Lint Engine
+Plugin 'w0rp/ale'
 
 " Fuzzy file, buffer, mru, tag, etc finder
 Plugin 'kien/ctrlp.vim'
@@ -97,16 +105,57 @@ Plugin 'csexton/trailertrash.vim'
 Plugin 'unblevable/quick-scope'
 
 " Asynchronous keyword completion system
-Plugin 'Shougo/deoplete.nvim'
+" Plugin 'Shougo/deoplete.nvim'
 
 " Golang support
-Plugin 'zchee/deoplete-go'
+" Plugin 'zchee/deoplete-go'
 
 " gocode
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
 
 " vim-grepper
 Plugin 'mhinz/vim-grepper'
+
+" search / replace globally
+Plugin 'wincent/ferret'
+
+" Comma and semi-colon insertion bliss for vim.
+Plugin 'lfilho/cosco.vim'
+
+" More Pleasant Editing on Commit Message
+Plugin 'rhysd/committia.vim'
+
+" I'm not going to lie to you; fugitive.vim may very well be the
+" best Git wrapper of all time.
+Plugin 'tpope/vim-fugitive'
+
+" A git commit browser
+Plugin 'junegunn/gv.vim'
+
+" Make vim more Puppet friendly
+Plugin 'rodjek/vim-puppet'
+
+" Ranger integration in vim and neovim
+Plugin 'francoiscabrol/ranger.vim'
+Plugin 'rbgrouleff/bclose.vim'
+
+" front for the silver searcher
+Plugin 'rking/ag.vim'
+
+" help you read complex code by showing diff level of parentheses in diff color
+Plugin 'luochen1990/rainbow'
+
+" Typescript syntax files for vim
+Plugin 'leafgarland/typescript-vim'
+
+" CoffeeScript support for vim
+Plugin 'kchmck/vim-coffee-script'
+
+" A (G)Vim plugin for exploring the source code definition(s)
+Plugin 'wesleyche/SrcExpl'
+
+" Vim sugar for the UNIX shell commands that need it the most
+Plugin 'tpope/vim-eunuch'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -143,10 +192,12 @@ set statusline+=%*
 
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_puppet_checkers = ['puppet', 'puppetlint']
-let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_php_checkers = ['phpcs'] "['php', 'phpcs', 'phpmd']
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
 let g:go_fmt_command = "goimports"
+
+let g:syntastic_php_phpcs_args='--standard PSR2'
 
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -202,8 +253,10 @@ nmap <A-SH> <Plug>DWMShrinkMaster
 " airline
 let g:airline#extensions#tabline#enabled = 1
 
-" tidy json
+" tidy
 command! -range -nargs=0 -bar Tidyjson <line1>,<line2>!python -m json.tool
+command! -range -nargs=0 -bar Tidyxml <line1>,<line2>!tidy -xml -i
+command! -range -nargs=0 -bar DecodeBas64 <line1>,<line2>!base64 --decode
 
 " puppet
 let g:puppet_align_hashes = 0
@@ -228,4 +281,29 @@ set textwidth=80
 autocmd FileType gitcommit set colorcolumn=73
 autocmd FileType gitcommit set textwidth=72
 
+" cosco
+autocmd FileType javascript,css,php nmap <silent> <Leader>; <Plug>(cosco-commaOrSemiColon)
+autocmd FileType javascript,css,php imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
+
 echo "  >^.^<  hello"
+
+" \s replace all instances of word under cursor
+nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
+
+" open nerd tree
+map <Leader>n :NERDTreeToggle<CR>
+
+" ale
+let g:ale_completion_enabled = 1
+let g:ale_fix_on_save = 1
+let g:ale_fixers = { 'javascript': ['eslint'], 'go': ['gofmt'] }
+" let g:ale_javascript_eslint_use_global = 1
+
+" define typescript file extension
+autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
+
+" w!! will run sudo to save the content
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
+" turn off highlighting for recent search
+nnoremap h :noh<CR>
