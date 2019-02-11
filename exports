@@ -1,9 +1,14 @@
 #!/bin/bash
 export DEVELOPMENT_WORK_DIR=/development
-export GOPATH=$HOME/workspace/golang
 export HISTCONTROL=ignoreboth:erasedups
+export PATH="$PATH:/home/smoky/.bin"
+
+export GOPATH=$HOME/workspace/golang
 export GOPATH=$HOME/workspace/golang
 export PATH=$PATH:$GOPATH/bin
+
+export PATH="$HOME/.cargo/bin:$PATH"
+export DOCKER_TAG=latest
 
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
 setopt SHARE_HISTORY             # Share history between all sessions.

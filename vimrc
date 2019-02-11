@@ -56,13 +56,14 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'scrooloose/syntastic'
 
 " Asynchronous Lint Engine
-Plugin 'w0rp/ale'
+" Plugin 'w0rp/ale'
 
 " Fuzzy file, buffer, mru, tag, etc finder
 Plugin 'kien/ctrlp.vim'
 
+" TODO: this might be laggy
 " lean & mean status/tabline for vim thatś light as air
-Plugin 'bling/vim-airline'
+" Plugin 'bling/vim-airline'
 
 " precision colorscheme for the vim text editor
 Plugin 'altercation/vim-colors-solarized'
@@ -105,10 +106,10 @@ Plugin 'csexton/trailertrash.vim'
 Plugin 'unblevable/quick-scope'
 
 " Asynchronous keyword completion system
-" Plugin 'Shougo/deoplete.nvim'
+Plugin 'Shougo/deoplete.nvim'
 
 " Golang support
-" Plugin 'zchee/deoplete-go'
+Plugin 'zchee/deoplete-go'
 
 " gocode
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
@@ -186,9 +187,9 @@ nnoremap <c-\> :CtrlP<CR>
 nmap     <C-f>f <Plug>CtrlSFPrompt
 
 " syntastic configuration
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_puppet_checkers = ['puppet', 'puppetlint']
@@ -251,11 +252,11 @@ nmap <A-SL> <Plug>DWMGrowMaster
 nmap <A-SH> <Plug>DWMShrinkMaster
 
 " airline
-let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
 
 " tidy
 command! -range -nargs=0 -bar Tidyjson <line1>,<line2>!python -m json.tool
-command! -range -nargs=0 -bar Tidyxml <line1>,<line2>!tidy -xml -i
+command! -range -nargs=0 -bar Tidyxml <line1>,<line2>!tidy -xml -i -q
 command! -range -nargs=0 -bar DecodeBas64 <line1>,<line2>!base64 --decode
 
 " puppet
@@ -284,8 +285,6 @@ autocmd FileType gitcommit set textwidth=72
 " cosco
 autocmd FileType javascript,css,php nmap <silent> <Leader>; <Plug>(cosco-commaOrSemiColon)
 autocmd FileType javascript,css,php imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
-
-echo "  >^.^<  hello"
 
 " \s replace all instances of word under cursor
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>/

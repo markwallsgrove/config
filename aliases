@@ -4,12 +4,14 @@ alias ssh="ssh -v"
 alias dc="docker-compose"
 alias dcd="docker-compose -f docker-compose-dev.yml"
 alias workspace="cd ~/workspace"
+alias rl="cd ~/workspace/rl-app"
+alias persona="cd ~/workspace/persona-server"
 alias dockerStopAll="docker stop \$(docker ps -a -q)";
 alias dockerRmAll="docker rm \$(docker ps -a -q)";
 alias dockerRmVolumes="docker volume rm \`docker volume ls -q -f dangling=true\`"
 alias dockerRmConsul="sudo rm -rf /consul/*"
 alias dockerRmDanglingImages="docker rmi \$(docker images -aq --filter dangling=true)"
-alias dockerCleanUp="dockerRmConsul; dockerStopAll; dockerRmAll; dockerRmVolumes; dockerRmDanglingImages"
+alias dockerCleanUp="dockerRmConsul; dockerStopAll; dockerRmAll; dockerRmVolumes; dockerRmDanglingImages; docker network prune"
 alias listLargeFiles="sudo du -h / 2>/dev/null | grep '[0-9\.]\+G'"
 alias startDocker="sudo service docker start"
 alias gcob="git checkout -b"
@@ -41,34 +43,79 @@ alias gitPassword="secret-tool search --all unique ssh-store:/home/smoky/.ssh/gi
 alias runTests="dc -f docker-compose-dev.yml run test"
 alias runRedis="docker run --name redis -p 6379:6379 -d redis:3.0.7"
 alias cleanDNS="sudo /etc/init.d/dns-clean restart; sudo systemd-resolve --flush-caches";
-alias useGoogleDNS="echo \"nameserver 8.8.8.8\" | sudo tee /etc/resolv.conf > /dev/null; cleanDNS"
+alias useLocalDNS="echo \"nameserver 127.0.0.1\" | sudo tee /etc/resolv.conf > /dev/null; cleanDNS"
 alias useAWSDNS="echo \"nameserver 172.16.0.23\" | sudo tee /etc/resolv.conf > /dev/null; cleanDNS"
 alias changeHosts="sudo vim /etc/hosts"
 alias reloadSource="source ~/.zshrc"
 alias colours="for i in {0..255}; do printf \"\\x1b[38;5;\${i}mcolour\${i}\\x1b[0m \"; done";
 alias startVBoxService="sudo systemctl start vboxdrv.service"
 alias ..="cd .."
+alias restartTrackpad="sudo rmmod bcm5974 && sudo modprobe bcm5974"
 
 function currentBranch() {
     echo `git rev-parse --abbrev-ref HEAD`
 }
 
+function selectLoginProd() {
+    export LOGIN_CONFIG_SECRET=$LOGIN_CONFIG_STAGING_SECRET
+}
+
+function selectLoginStaging() {
+    export LOGIN_CONFIG_SECRET=$LOGIN_CONFIG_STAGING_SECRET
+}
+
+function selectLoginLocal() {
+    export LOGIN_CONFIG_SECRET=$LOGIN_CONFIG_LOCAL_SECRET
+}
+
+function decryptProvider() {
+    secret=${LOGIN_CONFIG_SECRET:-$LOGIN_CONFIG_PROD_SECRET}
+    cat providers.ini.enc | docker run -i talis/nema:latest /nema -decrypt -key $secret > providers.ini
+}
+
+function encryptProvider() {
+    secret=${LOGIN_CONFIG_SECRET:-$LOGIN_CONFIG_PROD_SECRET}
+    cat providers.ini | docker run -i talis/nema:latest /nema -encrypt -key $secret > providers.ini.enc
+}
+
 function diffProviders() {
+    secret=${LOGIN_CONFIG_SECRET:-$LOGIN_CONFIG_PROD_SECRET}
     branch=`currentBranch`
-    x=`cat providers.ini.enc | docker run -i talis/nema:latest /nema -decrypt -key $LOGIN_CONFIG_PROD_SECRET`
+    x=`cat providers.ini.enc | docker run -i talis/nema:latest /nema -decrypt -key $secret`
     gco master >/dev/null 2>&1
     gpo >/dev/null 2>&1
-    y=`cat providers.ini.enc | docker run -i talis/nema:latest /nema -decrypt -key $LOGIN_CONFIG_PROD_SECRET`
+    y=`cat providers.ini.enc | docker run -i talis/nema:latest /nema -decrypt -key $secret`
     gco $branch >/dev/null 2>&1
     diff <(echo $x) <(echo $y)
 }
 
+function decryptIdps() {
+    secret=${LOGIN_CONFIG_SECRET:-$LOGIN_CONFIG_PROD_SECRET}
+    cat idps.json.enc | docker run -i talis/nema:latest /nema -decrypt -key $secret > idps.json
+}
+
+function encryptIdps() {
+    secret=${LOGIN_CONFIG_SECRET:-$LOGIN_CONFIG_PROD_SECRET}
+    cat idps.json | docker run -i talis/nema:latest /nema -encrypt -key $secret > idps.json.enc
+}
+
 function diffIdps() {
+    secret=${LOGIN_CONFIG_SECRET:-$LOGIN_CONFIG_PROD_SECRET}
     branch=`currentBranch`
-    x=`cat idps.json.enc | docker run -i talis/nema:latest /nema -decrypt -key $LOGIN_CONFIG_PROD_SECRET`
+    x=`cat idps.json.enc | docker run -i talis/nema:latest /nema -decrypt -key $secret`
     gco master >/dev/null 2>&1
     gpo >/dev/null 2>&1
-    y=`cat idps.json.enc | docker run -i talis/nema:latest /nema -decrypt -key $LOGIN_CONFIG_PROD_SECRET`
+    y=`cat idps.json.enc | docker run -i talis/nema:latest /nema -decrypt -key $secret`
     gco $branch >/dev/null 2>&1
     diff <(echo $x) <(echo $y)
+}
+
+function decryptFederations() {
+    secret=${LOGIN_CONFIG_SECRET:-$LOGIN_CONFIG_PROD_SECRET}
+    cat federations.json.enc | docker run -i talis/nema:latest /nema -decrypt -key $secret > federations.json
+}
+
+function encryptFederations() {
+    secret=${LOGIN_CONFIG_SECRET:-$LOGIN_CONFIG_PROD_SECRET}
+    cat federations.json| docker run -i talis/nema:latest /nema -encrypt -key $secret > federations.json.enc
 }

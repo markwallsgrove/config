@@ -49,7 +49,7 @@ ZSH_THEME="avit"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ant go grunt nvm node sudo tmux bower composer gitfast jsontools npm docker-compose rails rake ssh-agent taskwarrior vagrant kubectl kops completion)
+plugins=(git ant go grunt nvm node sudo tmux bower composer gitfast jsontools npm docker-compose rails rake ssh-agent taskwarrior vagrant kubectl kops completion kubectl minikube aws)
 
 # User configuration
 
@@ -131,19 +131,29 @@ if [ -f ~/.ec2.cli/completion.bash ]; then
 	source ~/.ec2.cli/completion.bash
 fi
 
-export PATH="$PATH:/home/smoky/.bin"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # bind caps lock to ctrl
 setxkbmap -option ctrl:nocaps
 
-source ~/.exports
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/smoky/.sdkman"
-[[ -s "/home/smoky/.sdkman/bin/sdkman-init.sh" ]] && source "/home/smoky/.sdkman/bin/sdkman-init.sh"
-
-source "/home/smoky/.sdkman/bin/sdkman-init.sh"
+# export SDKMAN_DIR="/home/smoky/.sdkman"
+# [[ -s "/home/smoky/.sdkman/bin/sdkman-init.sh" ]] && source "/home/smoky/.sdkman/bin/sdkman-init.sh"
+# source "/home/smoky/.sdkman/bin/sdkman-init.sh"
 
 source <(kubectl completion zsh)
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+# [[ -f /home/smoky/.nvm/versions/node/v8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/smoky/.nvm/versions/node/v8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+# [[ -f /home/smoky/.nvm/versions/node/v8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /home/smoky/.nvm/versions/node/v8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+
+source ~/.exports
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/self self
+
+complete -o nospace -C /home/smoky/workspace/golang/ec2 ec2
