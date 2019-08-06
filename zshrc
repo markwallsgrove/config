@@ -49,7 +49,7 @@ ZSH_THEME="avit"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ant go grunt nvm node sudo tmux bower composer gitfast jsontools npm docker-compose rails rake ssh-agent taskwarrior vagrant kubectl kops completion kubectl minikube aws)
+plugins=(git ant go grunt nvm tmux gitfast docker-compose vagrant kubectl kops completion minikube aws)
 
 # User configuration
 
@@ -120,7 +120,7 @@ fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-nvm use 8.10 2>&1 >/dev/null
+# nvm use 8.10 2>&1 >/dev/null
 
 autoload -U compinit && compinit
 autoload -U bashcompinit && bashcompinit
@@ -142,7 +142,7 @@ setxkbmap -option ctrl:nocaps
 # [[ -s "/home/smoky/.sdkman/bin/sdkman-init.sh" ]] && source "/home/smoky/.sdkman/bin/sdkman-init.sh"
 # source "/home/smoky/.sdkman/bin/sdkman-init.sh"
 
-source <(kubectl completion zsh)
+# source <(kubectl completion zsh)
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`

@@ -2,8 +2,10 @@
 alias toClipBoard="xclip -i -selection clipboard"
 alias ssh="ssh -v"
 alias dc="docker-compose"
+alias dcb="docker-compose -f docker-compose-build.yml"
 alias dcd="docker-compose -f docker-compose-dev.yml"
 alias workspace="cd ~/workspace"
+alias ws="cd ~/workspace"
 alias rl="cd ~/workspace/rl-app"
 alias persona="cd ~/workspace/persona-server"
 alias dockerStopAll="docker stop \$(docker ps -a -q)";
@@ -18,9 +20,9 @@ alias gcob="git checkout -b"
 alias gco="git checkout"
 alias gcot="git checkout --theirs"
 alias gom="git checkout master; git pull origin master"
-alias grm="branchName=\`git rev-parse --abbrev-ref HEAD\`; gom; git checkout \$branchName; git rebase -i master";
 alias gma="git rebase --abort";
 alias gpo="branchName=\`git rev-parse --abbrev-ref HEAD\`; git push origin \$branchName";
+alias grm="branchName=\`git rev-parse --abbrev-ref HEAD\`; gpo; gom; git checkout \$branchName; git rebase -i master";
 alias gpu="branchName=\`git rev-parse --abbrev-ref HEAD\`; git pull origin \$branchName";
 alias gst="git status"
 alias gd="git diff"
@@ -118,4 +120,13 @@ function decryptFederations() {
 function encryptFederations() {
     secret=${LOGIN_CONFIG_SECRET:-$LOGIN_CONFIG_PROD_SECRET}
     cat federations.json| docker run -i talis/nema:latest /nema -encrypt -key $secret > federations.json.enc
+}
+
+function prod_aws_keys() {
+    export AWS_ACCESS_KEY_ID=$PROD_AWS_ACCESS_KEY_ID
+    export AWS_SECRET_ACCESS_KEY=$PROD_AWS_SECRET_ACCESS_KEY
+}
+
+function stag_aws_keys() {
+    source ~/.security
 }

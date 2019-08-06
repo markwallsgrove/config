@@ -158,6 +158,9 @@ Plugin 'wesleyche/SrcExpl'
 " Vim sugar for the UNIX shell commands that need it the most
 Plugin 'tpope/vim-eunuch'
 
+" Intellisense engine for vim8 & neovim, full language server protocol support as VSCode
+Plugin 'neoclide/coc.nvim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
