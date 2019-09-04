@@ -109,7 +109,7 @@ Plugin 'unblevable/quick-scope'
 Plugin 'Shougo/deoplete.nvim'
 
 " Golang support
-Plugin 'zchee/deoplete-go'
+" Plugin 'zchee/deoplete-go'
 
 " gocode
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
@@ -198,7 +198,7 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_puppet_checkers = ['puppet', 'puppetlint']
 let g:syntastic_php_checkers = ['phpcs'] "['php', 'phpcs', 'phpmd']
 let g:syntastic_ruby_checkers = ['rubocop']
-let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
+" let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
 let g:go_fmt_command = "goimports"
 
 let g:syntastic_php_phpcs_args='--standard PSR2'

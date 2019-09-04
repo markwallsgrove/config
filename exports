@@ -7,8 +7,7 @@ export HISTCONTROL=ignoreboth:erasedups
 export PATH="$PATH:/home/smoky/.bin"
 
 export GOPATH=$HOME/workspace/golang
-export GOPATH=$HOME/workspace/golang
-export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
