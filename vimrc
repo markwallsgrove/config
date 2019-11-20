@@ -1,44 +1,46 @@
-" vip              -> select paragraph
-" 0                -> go to character 0
-" gU               -> selection to uppercase
-" gu               -> selection to lowercase
-" %                -> find matching bracket
-" *                -> highlight current word
-" :nohls           -> clear search
-"
-" wW               -> jump forwards to the start of the word
-" eE               -> jump forwards to the end of the word
-" bB               -> jump backwards to the start of the word
-" ge gE            -> jump backwards to the end of the word
-" f*               -> jump foward to a certain character on the line
-" F*               -> jump backward to a certain character on the line
-" ;                -> repeat last search going fowards
-" ,                -> repeat last search going backwards
-" t*               -> jump forward before a certain character on the line
-" T*               -> jump backward to a certain character on the line
-" ?*               -> search backwards with a pattern
-" ctrl+o           -> marks file for opening (in ctrln)
-" yf)              -> yank forward and include round bracket
-" \f               -> load ranger to find a file
-" gx               -> go to website
-" gf               -> go to file
-" ctrl+^           -> go to previous file
-
-" comment out line -> gc
-" find file        -> ctrl+\
-" comment line     -> \ci
-" change ' to <p>  -> cs'<q>
-" remove <p> to '  -> cst'
-" remove '         -> ds'
-" alignment        -> Tabularize/=
-" rename           -> :rename newname
-" gitk on text     -> :gitv!
-" gitk global      -> :gitv
-" file browser     -> :VimFiler
-" paste into vim   -> :set paste, set nopaste
-" split horizontal -> :split
-" split vertical   -> :vsplit
-" format json      -> :%!python -mjson.tool
+" Leader key        -> \
+" vip               -> select paragraph
+" 0                 -> go to character 0
+" gU                -> selection to uppercase
+" gu                -> selection to lowercase
+" %                 -> find matching bracket
+" *                 -> highlight current word
+" :nohls            -> clear search
+" wW                -> jump forwards to the start of the word
+" eE                -> jump forwards to the end of the word
+" bB                -> jump backwards to the start of the word
+" ge gE             -> jump backwards to the end of the word
+" f*                -> jump foward to a certain character on the line
+" F*                -> jump backward to a certain character on the line
+" ;                 -> repeat last search going fowards
+" ,                 -> repeat last search going backwards
+" t*                -> jump forward before a certain character on the line
+" T*                -> jump backward to a certain character on the line
+" ?*                -> search backwards with a pattern
+" ctrl+o            -> marks file for opening (in ctrln)
+" yf)               -> yank forward and include round bracket
+" \f                -> load ranger to find a file
+" gx                -> go to website
+" gf                -> go to file
+" ctrl+^            -> go to previous file
+" comment out line  -> gc
+" find file         -> ctrl+\
+" comment line      -> \ci
+" change ' to <p>   -> cs'<q>
+" remove <p> to '   -> cst'
+" remove '          -> ds'
+" alignment         -> Tabularize/=
+" rename            -> :rename newname
+" gitk on text      -> :gitv!
+" gitk global       -> :gitv
+" file browser      -> :VimFiler
+" paste into vim    -> :set paste, set nopaste
+" split horizontal  -> :split
+" split vertical    -> :vsplit
+" format json       -> :%!python -mjson.tool
+" github blob view  -> <leader>gh
+" github blame view -> <leader>gb
+" github repo view  -> <leader>go
 
 " vundle
 set nocompatible              " be iMproved, required
@@ -58,8 +60,11 @@ Plugin 'VundleVim/Vundle.vim'
 " Asynchronous Lint Engine
 " Plugin 'w0rp/ale'
 
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+
 " Fuzzy file, buffer, mru, tag, etc finder
-Plugin 'kien/ctrlp.vim'
+" Plugin 'ctrlpvim/ctrlp.vim'
 
 " TODO: this might be laggy
 " lean & mean status/tabline for vim thatś light as air
@@ -161,6 +166,10 @@ Plugin 'tpope/vim-eunuch'
 " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode
 " Plugin 'neoclide/coc.nvim'
 
+" A Vim plugin that opens a link to the current line on GitHub (and also
+" supports Bitbucket and self-deployed GitHub and GitLab).
+Plugin 'ruanyl/vim-gh-line'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -184,10 +193,10 @@ set smartcase
 set lazyredraw
 
 " ctrlp
-nnoremap <c-\> :CtrlP<CR>
+nnoremap <c-\> :Files /home/smokyb<CR>
 
 " ctrlsf
-nmap     <C-f>f <Plug>CtrlSFPrompt
+" nmap     <C-f>f <Plug>CtrlSFPrompt
 
 " syntastic configuration
 " set statusline+=%#warningmsg#
