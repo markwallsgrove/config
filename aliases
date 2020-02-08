@@ -37,6 +37,8 @@ alias gr="git reset ."
 alias grh="git reset HEAD "
 alias gruf="git clean -fd"
 alias ghr="branchName=\`git rev-parse --abbrev-ref HEAD\`; git fetch origin; git reset --hard \$branchName"
+alias glc='git log --format=%H -n1'
+alias gro="git reset --hard HEAD~1"
 
 # misc
 alias reloadSource="source ~/.zshrc"
@@ -55,4 +57,4 @@ alias usKeyboardLayout="setxkbmap -layout us"
 alias turnOffLaptopDisplay="xrandr --output eDP1 --off"
 alias turnOnLaptopDisplay="xrandr --output eDP1 --mode 3840x2160 --rate 60.00"
 alias turnOnHomeDisplay="xrandr --output DP3 --mode 3840x2160 --rate 30.00"
-alias turnOnWorkDisplay="xrandr --output DP3 --mode 2048x1080 --rate 60.00 --dpi 117.50"
+alias turnOnWorkDisplay="xrandr --output DP3 --mode 2048x1080 --rate 60.00 --dpi 117.50 --scale 2x2"

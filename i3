@@ -209,3 +209,7 @@ bindsym Mod4+l exec i3lock --color 000000
 
 # lock and hiberate
 bindsym Mod4+Escape exec "i3lock --color 000000; sudo pm-hibernate"
+
+# screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
