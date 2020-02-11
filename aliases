@@ -53,6 +53,7 @@ alias gem="vi -p \`gst | awk '/both modified:/ { print \$3 }'\`"
 alias fdf="fd --type f"
 alias fdd="fd --type d"
 alias usKeyboardLayout="setxkbmap -layout us"
+alias gbKeyboardLayout="setxkbmap -layout gb"
 
 alias turnOffLaptopDisplay="xrandr --output eDP1 --off"
 alias turnOnLaptopDisplay="xrandr --output eDP1 --mode 3840x2160 --rate 60.00"
