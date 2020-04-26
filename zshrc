@@ -109,20 +109,6 @@ export KEYTIMEOUT=1
 [ -f ~/.secrets ] && source ~/.secrets
 [ -f ~/.exports ] && source ~/.exports
 
-# tabtab source for packages
-# uninstall by removing these lines
-[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /home/smokyb/workspace/data-dog-feeder/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/smokyb/workspace/data-dog-feeder/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /home/smokyb/workspace/data-dog-feeder/node_modules/tabtab/.completions/sls.zsh ]] && . /home/smokyb/workspace/data-dog-feeder/node_modules/tabtab/.completions/sls.zsh
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /home/smokyb/workspace/data-dog-feeder/node_modules/tabtab/.completions/slss.zsh ]] && . /home/smokyb/workspace/data-dog-feeder/node_modules/tabtab/.completions/slss.zsh
-
 # fnm
 export PATH=/home/smokyb/.fnm:$PATH
 eval "`fnm env --multi`"
@@ -137,7 +123,6 @@ export PATH="$PATH:$HOME/.ec2.cli"
 if [ -f ~/.ec2.cli/completion.bash ]; then
 	source ~/.ec2.cli/completion.bash
 fi
-
 
 source /home/smokyb/.config/broot/launcher/bash/br
 
