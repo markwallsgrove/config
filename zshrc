@@ -1,24 +1,40 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="avit"
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+#ZSH_THEME="agnoster"
+ZSH_THEME="robbyrussell"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS=true
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -39,40 +55,40 @@ ZSH_THEME="avit"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ant go grunt nvm tmux gitfast docker-compose vagrant kubectl kops completion minikube aws)
+plugins=(git k systemd npm taskwarrior aws kubectl)
+
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/local/go/bin:/home/smoky/workspace/golang/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='mvim'
-fi
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -82,78 +98,54 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-#
-export VISUAL=vim
-export EDITOR="$VISUAL"
 
-function collapse_pwd {
-    echo $(pwd | sed -e "s,^$HOME,~,")
-}
+# vim mode
+bindkey -v
+export KEYTIMEOUT=1
 
-directory_name() {
-    PROMPT_PATH=""
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-    CURRENT=`dirname ${PWD}`
-    if [[ $CURRENT = / ]]; then
-        PROMPT_PATH=""
-    elif [[ $PWD = $HOME ]]; then
-        PROMPT_PATH=""
-    else
-        PROMPT_PATH=$(print -P %3~)
-        PROMPT_PATH="${PROMPT_PATH%/*}/"
-    fi
-    echo " %{$fg_bold[cyan]%}${PROMPT_PATH}%{$reset_color%}%{$fg[red]%}%1~%{$reset_color%}"
-}
+[ -f ~/.aliases ] && source ~/.aliases
+[ -f ~/.secrets ] && source ~/.secrets
+[ -f ~/.exports ] && source ~/.exports
 
-prompt_context () { }
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
 
-export PROMPT="$PROMPT"
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /home/smokyb/workspace/data-dog-feeder/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/smokyb/workspace/data-dog-feeder/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /home/smokyb/workspace/data-dog-feeder/node_modules/tabtab/.completions/sls.zsh ]] && . /home/smokyb/workspace/data-dog-feeder/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /home/smokyb/workspace/data-dog-feeder/node_modules/tabtab/.completions/slss.zsh ]] && . /home/smokyb/workspace/data-dog-feeder/node_modules/tabtab/.completions/slss.zsh
 
-if [ -f ~/.security ]; then
-    source ~/.security
-fi
-
-if [ -f ~/.aliases ]; then
-    source ~/.aliases
-fi
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# nvm use 8.10 2>&1 >/dev/null
+# fnm
+export PATH=/home/smokyb/.fnm:$PATH
+eval "`fnm env --multi`"
 
 autoload -U compinit && compinit
 autoload -U bashcompinit && bashcompinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+_comp_options+=(globdots)		# Include hidden files.`
 
 export PATH="$PATH:$HOME/.ec2.cli"
-script_dir=$(dirname $0)
 if [ -f ~/.ec2.cli/completion.bash ]; then
 	source ~/.ec2.cli/completion.bash
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# bind caps lock to ctrl
-setxkbmap -option ctrl:nocaps
+source /home/smokyb/.config/broot/launcher/bash/br
 
+export PATH="$PATH:$HOME/.pyenv/versions/3.7.2/bin"
+export PATH="$PATH:$HOME/.ebcli-virtual-env/executables"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-# export SDKMAN_DIR="/home/smoky/.sdkman"
-# [[ -s "/home/smoky/.sdkman/bin/sdkman-init.sh" ]] && source "/home/smoky/.sdkman/bin/sdkman-init.sh"
-# source "/home/smoky/.sdkman/bin/sdkman-init.sh"
+# edit line in vim
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
 
-# source <(kubectl completion zsh)
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-# [[ -f /home/smoky/.nvm/versions/node/v8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/smoky/.nvm/versions/node/v8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-# [[ -f /home/smoky/.nvm/versions/node/v8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /home/smoky/.nvm/versions/node/v8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-
-source ~/.exports
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/self self
-
-complete -o nospace -C /home/smoky/workspace/golang/ec2 ec2
+setxkbmap -option "ctrl:nocaps"
