@@ -1,46 +1,47 @@
-" Leader key        -> \
-" vip               -> select paragraph
-" 0                 -> go to character 0
-" gU                -> selection to uppercase
-" gu                -> selection to lowercase
-" %                 -> find matching bracket
-" *                 -> highlight current word
-" :nohls            -> clear search
-" wW                -> jump forwards to the start of the word
-" eE                -> jump forwards to the end of the word
-" bB                -> jump backwards to the start of the word
-" ge gE             -> jump backwards to the end of the word
-" f*                -> jump foward to a certain character on the line
-" F*                -> jump backward to a certain character on the line
-" ;                 -> repeat last search going fowards
-" ,                 -> repeat last search going backwards
-" t*                -> jump forward before a certain character on the line
-" T*                -> jump backward to a certain character on the line
-" ?*                -> search backwards with a pattern
-" ctrl+o            -> marks file for opening (in ctrln)
-" yf)               -> yank forward and include round bracket
-" \f                -> load ranger to find a file
-" gx                -> go to website
-" gf                -> go to file
-" ctrl+^            -> go to previous file
-" comment out line  -> gc
-" find file         -> ctrl+\
-" comment line      -> \ci
-" change ' to <p>   -> cs'<q>
-" remove <p> to '   -> cst'
-" remove '          -> ds'
-" alignment         -> Tabularize/=
-" rename            -> :rename newname
-" gitk on text      -> :gitv!
-" gitk global       -> :gitv
-" file browser      -> :VimFiler
-" paste into vim    -> :set paste, set nopaste
-" split horizontal  -> :split
-" split vertical    -> :vsplit
-" format json       -> :%!python -mjson.tool
-" github blob view  -> <leader>gh
-" github blame view -> <leader>gb
-" github repo view  -> <leader>go
+" Leader key             -> \
+" vip                    -> select paragraph
+" 0                      -> go to character 0
+" gU                     -> selection to uppercase
+" gu                     -> selection to lowercase
+" %                      -> find matching bracket
+" *                      -> highlight current word
+" :nohls                 -> clear search
+" wW                     -> jump forwards to the start of the word
+" eE                     -> jump forwards to the end of the word
+" bB                     -> jump backwards to the start of the word
+" ge gE                  -> jump backwards to the end of the word
+" f*                     -> jump foward to a certain character on the line
+" F*                     -> jump backward to a certain character on the line
+" ;                      -> repeat last search going fowards
+" ,                      -> repeat last search going backwards
+" t*                     -> jump forward before a certain character on the line
+" T*                     -> jump backward to a certain character on the line
+" ?*                     -> search backwards with a pattern
+" ctrl+o                 -> marks file for opening (in ctrln)
+" yf)                    -> yank forward and include round bracket
+" \f                     -> load ranger to find a file
+" gx                     -> go to website
+" gf                     -> go to file
+" ctrl+^                 -> go to previous file
+" comment out line       -> gc
+" find file              -> ctrl+\
+" comment line           -> \ci
+" change ' to <p>        -> cs'<q>
+" remove <p> to '        -> cst'
+" remove '               -> ds'
+" alignment              -> Tabularize/=
+" rename                 -> :rename newname
+" gitk on text           -> :gitv!
+" gitk global            -> :gitv
+" file browser           -> :VimFiler
+" paste into vim         -> :set paste, set nopaste
+" split horizontal       -> :split
+" split vertical         -> :vsplit
+" format json            -> :%!python -mjson.tool
+" github blob view       -> <leader>gh
+" github blame view      -> <leader>gb
+" github repo view       -> <leader>go
+" delete all empty lines -> :g/^$/d
 
 " vundle
 set nocompatible              " be iMproved, required

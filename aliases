@@ -59,3 +59,12 @@ alias turnOffLaptopDisplay="xrandr --output eDP1 --off"
 alias turnOnLaptopDisplay="xrandr --output eDP1 --mode 3840x2160 --rate 60.00"
 alias turnOnHomeDisplay="xrandr --output DP3 --mode 3840x2160 --rate 30.00"
 alias turnOnWorkDisplay="xrandr --output DP3 --mode 2048x1080 --rate 60.00 --dpi 117.50 --scale 2x2"
+
+alias prodVPN="cd ~/.ssh; sudo openvpn aws-ds-prod.ovpn"
+alias stagingVPN="cd ~/.ssh; sudo openvpn aws-ds-stage.ovpn"
+alias prodCPVPN="cd ~/.ssh; sudo openvpn cp-prod-mark.ovpn"
+alias stagingCPVPN="cd ~/.ssh; sudo openvpn cp-stage-mark.ovpn"
+
+
+alias freeze="echo 'freeze' | sudo tee /sys/power/state"
+alias battery="upower -i /org/freedesktop/UPower/devices/battery_BAT0"

@@ -6,9 +6,10 @@ output VIRTUAL1
 off
 output eDP1
 mode 3840x2160
-pos 0x0
+pos 3841x0
 primary
 rate 60.00
 output DP3
-mode 3840x2160
-pos 3841x0
+mode 2560x1440
+pos 0x0
+rate 59.95
