@@ -1,5 +1,5 @@
 #!/bin/bash
-export PATH="$PATH:$HOME/.ec2.cli"
+export PATH="$PATH:$HOME/.ec2.cli:/usr/local/go/bin"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export DEVELOPMENT_WORK_DIR=/development
@@ -23,7 +23,7 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 
 # export DOCKER_TAG=PLAT-2152
 export AWS_ACCOUNT_ID=AKIAIF2VQMRWQ47XB2EQ
-export AWS_REGION=eu-west-1
+# export AWS_REGION=eu-west-1
 export AWS_PREFIX=development-mw-
 export AWS_ALERT_EMAIL=mw@talis.com
 export SERVERLESS_DEPLOYMENT_BUCKET=talis-private

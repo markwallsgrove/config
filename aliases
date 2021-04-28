@@ -19,7 +19,10 @@ alias gcot="git checkout --theirs"
 alias gom="git checkout master; git pull origin master"
 alias gma="git rebase --abort";
 alias gpo="branchName=\`git rev-parse --abbrev-ref HEAD\`; git push origin \$branchName";
+alias gponv="gpo --no-verify";
+alias gponvf="gponv -f";
 alias grm="branchName=\`git rev-parse --abbrev-ref HEAD\`; gpo; gom; git checkout \$branchName; git rebase -i master";
+alias grmas="git rebase -i master --autosquash"
 alias gpu="branchName=\`git rev-parse --abbrev-ref HEAD\`; git pull origin \$branchName";
 alias gst="git status"
 alias gd="git diff"
@@ -39,6 +42,8 @@ alias gruf="git clean -fd"
 alias ghr="branchName=\`git rev-parse --abbrev-ref HEAD\`; git fetch origin; git reset --hard \$branchName"
 alias glc='git log --format=%H -n1'
 alias gro="git reset --hard HEAD~1"
+alias glb="git reflog -n10 | grep -E \"checkout: moving from .+ to \$\(git rev-parse --abbrev-ref HEAD\)\$\" | awk '{ print $6 }' | head -n1"
+alias gre="vi -p \$(git diff --name-only --diff-filter=U)"
 
 # misc
 alias reloadSource="source ~/.zshrc"
@@ -54,6 +59,7 @@ alias fdf="fd --type f"
 alias fdd="fd --type d"
 alias usKeyboardLayout="setxkbmap -layout us"
 alias gbKeyboardLayout="setxkbmap -layout gb"
+alias cat="/usr/bin/bat -p --paging never"
 
 alias turnOffLaptopDisplay="xrandr --output eDP1 --off"
 alias turnOnLaptopDisplay="xrandr --output eDP1 --mode 3840x2160 --rate 60.00"
@@ -65,6 +71,9 @@ alias stagingVPN="cd ~/.ssh; sudo openvpn aws-ds-stage.ovpn"
 alias prodCPVPN="cd ~/.ssh; sudo openvpn cp-prod-mark.ovpn"
 alias stagingCPVPN="cd ~/.ssh; sudo openvpn cp-stage-mark.ovpn"
 
-
+alias restartPoly="killall polybar; polybar top &"
 alias freeze="echo 'freeze' | sudo tee /sys/power/state"
 alias battery="upower -i /org/freedesktop/UPower/devices/battery_BAT0"
+
+alias aws2='docker run --rm -ti -v ~/.aws:/root/.aws:ro -e AWS_PROFILE=$AWS_PROFILE -v $(pwd):/aws amazon/aws-cli'
+

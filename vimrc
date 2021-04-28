@@ -24,6 +24,7 @@
 " gf                     -> go to file
 " ctrl+^                 -> go to previous file
 " comment out line       -> gc
+" go to url              -> gx
 " find file              -> ctrl+\
 " comment line           -> \ci
 " change ' to <p>        -> cs'<q>
@@ -154,6 +155,7 @@ Plugin 'luochen1990/rainbow'
 
 " Typescript syntax files for vim
 Plugin 'leafgarland/typescript-vim'
+Plugin 'peitalin/vim-jsx-typescript'
 
 " CoffeeScript support for vim
 Plugin 'kchmck/vim-coffee-script'
@@ -268,7 +270,7 @@ nmap <A-SH> <Plug>DWMShrinkMaster
 " let g:airline#extensions#tabline#enabled = 1
 
 " tidy
-command! -range -nargs=0 -bar Tidyjson <line1>,<line2>!python -m json.tool
+command! -range -nargs=0 -bar Tidyjson <line1>,<line2>!python3 -m json.tool
 command! -range -nargs=0 -bar Tidyxml <line1>,<line2>!tidy -xml -i -q
 command! -range -nargs=0 -bar DecodeBas64 <line1>,<line2>!base64 --decode
 
@@ -319,3 +321,6 @@ cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " turn off highlighting for recent search
 nnoremap h :noh<CR>
+
+" set filetypes as typescript.tsx
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx

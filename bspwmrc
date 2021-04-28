@@ -17,5 +17,8 @@ bspc config gapless_monocle      true
 # bspc rule -a Kupfer.py focus=on
 # bspc rule -a Screenkey manage=off
 
-polybar top &
+autorand -c
+
 setxkbmap -option "ctrl:nocaps"
+polybar top &
+alsactl load &
