@@ -43,6 +43,7 @@
 " github blame view      -> <leader>gb
 " github repo view       -> <leader>go
 " delete all empty lines -> :g/^$/d
+" :YAMLFormat            -> Format yaml file
 
 " vundle
 set nocompatible              " be iMproved, required
@@ -172,6 +173,9 @@ Plugin 'tpope/vim-eunuch'
 " A Vim plugin that opens a link to the current line on GitHub (and also
 " supports Bitbucket and self-deployed GitHub and GitLab).
 Plugin 'ruanyl/vim-gh-line'
+
+" Vim Plugin for YAML formatting
+Plugin 'tarekbecker/vim-yaml-formatter'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

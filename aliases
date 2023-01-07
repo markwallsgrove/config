@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Docker
-alias dc="docker-compose"
-alias dcb="docker-compose -f docker-compose-build.yml"
-alias dcd="docker-compose -f docker-compose-dev.yml"
-alias dce="docker-compose -f docker-compose-experiment.yml"
+alias dc="docker compose"
+alias dcb="docker compose -f docker-compose-build.yml"
+alias dcd="docker compose -f docker-compose-dev.yml"
+alias dce="docker compose -f docker-compose-experiment.yml"
 alias dockerRmDiffs="sudo service docker stop; sudo rm -rf /var/lib/docker/aufs/diff; sudo service docker start"
 alias dockerStopAll="docker stop \$(docker ps -a -q)";
 alias dockerRmAll="docker rm \$(docker ps -a -q)";
@@ -55,7 +55,7 @@ alias listLargeFiles="sudo du -h / 2>/dev/null | grep '[0-9\.]\+G'"
 alias ls="exa -alh --color=auto"
 alias done="notify-send -i face-wink 'done'"
 alias gem="vi -p \`gst | awk '/both modified:/ { print \$3 }'\`"
-alias fdf="fd --type f"
+alias fdf="fd --type f -H"
 alias fdd="fd --type d"
 alias usKeyboardLayout="setxkbmap -layout us"
 alias gbKeyboardLayout="setxkbmap -layout gb"
@@ -76,4 +76,32 @@ alias freeze="echo 'freeze' | sudo tee /sys/power/state"
 alias battery="upower -i /org/freedesktop/UPower/devices/battery_BAT0"
 
 alias aws2='docker run --rm -ti -v ~/.aws:/root/.aws:ro -e AWS_PROFILE=$AWS_PROFILE -v $(pwd):/aws amazon/aws-cli'
+
+alias k='kubectl'
+alias kc='kubectx'
+alias kn='kubens'
+alias km="kubectl -n monitoring"
+alias ka="kubectl -n ambassador"
+alias kg="kubectl -n graylog"
+alias ks='kubectl -n kube-system'
+alias ki="kubectl -n infra-utilities"
+
+alias gotest="go test ./..."
+alias golint="golangci-lint run --fix"
+alias gotestwatch="fdf | grep -v vendor/ | entr -c go test ./..."
+alias golintwatch="fdf | grep -v vendor/ | entr -c golangci-lint run --fix"
+alias gotest="go test -coverprofile=prof.out ./..."
+alias gocoverage="go tool cover -html=prof.out"
+alias govendor="go mod tidy -compat=1.17; go mod vendor"
+
+alias sshEngVault="ssh ip-172-16-0-84.eu-west-2.compute.internal"
+
+alias zl="z \$(zoxide query -l | fzf)"
+
+alias listAWSProfiles="aws configure list-profiles"
+
+yq() {
+  docker run --rm -i -v "${PWD}":/workdir mikefarah/yq "$@"
+}
+
 

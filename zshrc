@@ -69,7 +69,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git npm aws fzf web-search)
+plugins=(git npm aws fzf web-search kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,21 +99,30 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-eval "$(scmpuff init -s)"
+# eval "$(scmpuff init -s)"
 
 # vim mode
 bindkey -v
+bindkey "^R" history-incremental-search-backward
 export KEYTIMEOUT=1
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-[ -f ~/.aliases ] && source ~/.aliases
-[ -f ~/.secrets ] && source ~/.secrets
-[ -f ~/.exports ] && source ~/.exports
 
 # fnm
-export PATH=/home/smokyb/.fnm:$PATH
-eval "`fnm env --multi`"
+# export PATH=/home/smokyb/.fnm:$PATH
+# eval "`fnm env --multi`"
+
+# brew
+if [ -d "/home/linuxbrew/.linuxbrew/bin" ] ; then
+    PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+fi
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
+
 
 autoload -U compinit && compinit
 autoload -U bashcompinit && bashcompinit
@@ -126,8 +135,20 @@ _comp_options+=(globdots)		# Include hidden files.`
 # 	source ~/.ec2.cli/completion.bash
 # fi
 
-export PATH="$PATH:$HOME/.pyenv/versions/3.7.2/bin"
-export PATH="$PATH:$HOME/.ebcli-virtual-env/executables"
+# export PATH="$PATH:$HOME/.pyenv/versions/3.7.2/bin"
+# export PATH="$PATH:$HOME/.ebcli-virtual-env/executables"
+
+# for https://gitlab.infosum.io/infrastructure/tooling/iss
+export PATH="$PATH:$HOME/.local/bin"
+
+# golang binaries
+export PATH="$PATH:/usr/local/go/bin"
+export GOPRIVATE=gitlab.infosum.io
+export PATH="$PATH:$HOME/go/bin"
+
+export PATH="$PATH:$HOME/projects/gitlab/infosum/tools/scripts/sre"
+
+export PATH="$PATH:$HOME/bin"
 
 # edit line in vim
 autoload edit-command-line; zle -N edit-command-line
@@ -135,3 +156,35 @@ bindkey '^e' edit-command-line
 
 setxkbmap -option "ctrl:nocaps"
 
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+
+[ -f ~/.aliases ] && source ~/.aliases
+[ -f ~/.secrets ] && source ~/.secrets
+[ -f ~/.exports ] && source ~/.exports
+[ -f ~/.funcs ] && source ~/.funcs
+
+export YKMAN_OATH_CREDENTIAL_NAME="Amazon"
+export AWS_VAULT_PROMPT=ykman
+
+export VISUAL="/usr/bin/nvim"
+export EDITOR="$VISUAL"
+
+# NoiseTorch
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+source ~/.kubech/kubech
+source ~/.kubech/completion/kubech.bash
+
+export GIT_WORKSPACE="$HOME/projects"
+
+
+setopt no_aliases
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+setopt aliases
