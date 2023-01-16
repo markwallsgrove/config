@@ -114,6 +114,8 @@ Plugin 'csexton/trailertrash.vim'
 Plugin 'unblevable/quick-scope'
 
 " Asynchronous keyword completion system
+Plugin 'roxma/vim-hug-neovim-rpc'
+Plugin 'roxma/nvim-yarp'
 Plugin 'Shougo/deoplete.nvim'
 
 " Golang support

@@ -45,7 +45,7 @@ alias gro="git reset --hard HEAD~1"
 alias glb="git reflog -n10 | grep -E \"checkout: moving from .+ to \$\(git rev-parse --abbrev-ref HEAD\)\$\" | awk '{ print $6 }' | head -n1"
 alias gre="vi -p \$(git diff --name-only --diff-filter=U)"
 
-# misc
+# # misc
 alias reloadSource="source ~/.zshrc"
 alias fd=fdfind
 alias toClipBoard="xclip -i -selection clipboard"
@@ -53,13 +53,12 @@ alias ssh="ssh -v"
 alias ws="cd ~/workspace"
 alias listLargeFiles="sudo du -h / 2>/dev/null | grep '[0-9\.]\+G'"
 alias ls="exa -alh --color=auto"
-alias done="notify-send -i face-wink 'done'"
 alias gem="vi -p \`gst | awk '/both modified:/ { print \$3 }'\`"
 alias fdf="fd --type f -H"
 alias fdd="fd --type d"
 alias usKeyboardLayout="setxkbmap -layout us"
 alias gbKeyboardLayout="setxkbmap -layout gb"
-alias cat="/usr/bin/bat -p --paging never"
+alias cat="\$(which bat) -p --paging never"
 
 alias turnOffLaptopDisplay="xrandr --output eDP1 --off"
 alias turnOnLaptopDisplay="xrandr --output eDP1 --mode 3840x2160 --rate 60.00"
@@ -96,6 +95,7 @@ alias govendor="go mod tidy -compat=1.17; go mod vendor"
 
 alias sshEngVault="ssh ip-172-16-0-84.eu-west-2.compute.internal"
 
+alias z="zoxide"
 alias zl="z \$(zoxide query -l | fzf)"
 
 alias listAWSProfiles="aws configure list-profiles"
