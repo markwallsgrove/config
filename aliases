@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Docker
+alias docker-compose="docker compose"
 alias dc="docker compose"
 alias dcb="docker compose -f docker-compose-build.yml"
 alias dcd="docker compose -f docker-compose-dev.yml"
@@ -19,8 +20,10 @@ alias gcot="git checkout --theirs"
 alias gom="git checkout master; git pull origin master"
 alias gma="git rebase --abort";
 alias gpo="branchName=\`git rev-parse --abbrev-ref HEAD\`; git push origin \$branchName";
+alias gpof="gpo -f"
 alias gponv="gpo --no-verify";
 alias gponvf="gponv -f";
+alias grma="GIT_EDITOR=true git rebase -i main"
 alias grm="branchName=\`git rev-parse --abbrev-ref HEAD\`; gpo; gom; git checkout \$branchName; git rebase -i master";
 alias grmas="git rebase -i master --autosquash"
 alias gpu="branchName=\`git rev-parse --abbrev-ref HEAD\`; git pull origin \$branchName";
@@ -28,8 +31,11 @@ alias gst="git status"
 alias gd="git diff"
 alias gau="git add -u"
 alias ga="git add"
+alias gaa="ga -A"
 alias gai="git add -i"
 alias gc="git commit"
+alias gcf="git commit --fixup=\$(git log -n 1 --pretty=format:\"%H\")"
+alias gcfp="gaa && gcf && grma && gpof"
 alias gss="git stash save"
 alias gsp="git stash pop"
 alias gsa="git stash apply"
