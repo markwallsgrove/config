@@ -47,3 +47,10 @@ vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
+
+-- buffers
+--vim.api.nvim_set_keymap("n", "tk", ":blast<enter>", {noremap=false})
+--vim.api.nvim_set_keymap("n", "tj", ":bfirst<enter>", {noremap=false})
+vim.api.nvim_set_keymap("n", "bp", ":bprev<enter>", {noremap=false})
+vim.api.nvim_set_keymap("n", "bn", ":bnext<enter>", {noremap=false})
+vim.api.nvim_set_keymap("n", "bd", ":bdelete<enter>", {noremap=false})
