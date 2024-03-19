@@ -1,13 +1,29 @@
+[credential "https://github.com"]
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = !/usr/bin/gh auth git-credential
 [user]
 	email = markwallsgrove@users.noreply.github.com
 	name = Mark Wallsgrove
 [core]
 	pager = less -F -X
-	excludesfile = ~/.gitignore
-	fileMode = false
+	excludesFile = /home/markwallsgrove/.gitignore
+	fileMode = true
 [rerere]
 	enabled = true
 [alias]
     change-commits = "!f() { VAR1=$1; VAR='$'$1; OLD=$2; NEW=$3; echo \"Are you sure for replace $VAR $OLD => $NEW ?(Y/N)\";read OK;if [ \"$OK\" = 'Y' ] ; then shift 3; git filter-branch --env-filter \"if [ \\\"${VAR}\\\" = '$OLD' ]; then export $VAR1='$NEW';echo 'to $NEW'; fi\" $@; fi;}; f "
     gr = log --graph --full-history --all --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"
-
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+[color]
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
+[push]
+	autoSetupRemote = true
+    default = current
+	autoSetupRemote = true
+[rebase]
+	autosquash = true

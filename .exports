@@ -1,15 +1,14 @@
 #!/bin/bash
-export PATH="$PATH:$HOME/.ec2.cli:/usr/local/go/bin"
-export VISUAL=vim
+export VISUAL=neovim
 export EDITOR="$VISUAL"
-export DEVELOPMENT_WORK_DIR=/development
-export HISTCONTROL=ignoreboth:erasedups
-export PATH="$PATH:/home/smoky/.bin"
 
-export GOPATH=$HOME/workspace/golang
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+export GIT_WORKSPACE=~/projects
 
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
+export PATH="$PATH:/home/markwallsgrove/go/bin"
+
+export TERMINAL=gnome-terminal
 
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
 setopt SHARE_HISTORY             # Share history between all sessions.
@@ -20,18 +19,3 @@ setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
 setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
-
-# export DOCKER_TAG=PLAT-2152
-export AWS_ACCOUNT_ID=AKIAIF2VQMRWQ47XB2EQ
-# export AWS_REGION=eu-west-1
-export AWS_PREFIX=development-mw-
-export AWS_ALERT_EMAIL=mw@talis.com
-export SERVERLESS_DEPLOYMENT_BUCKET=talis-private
-export GLOBAL_STREAM=development-mw-echo-global-stream
-export GLOBAL_STREAM_RETENTION_PERIOD_HOURS=24
-export GLOBAL_STREAM_SHARD_COUNT=1
-export GLOBAL_STORE_BUCKET_NAME=talis-private
-export GLOBAL_STORE_BUCKET_PATH_PREFIX=development/development-mw-global-store
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
