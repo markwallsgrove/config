@@ -41,9 +41,6 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>");
-vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
-
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
@@ -54,3 +51,10 @@ end)
 vim.api.nvim_set_keymap("n", "bp", ":bprev<enter>", {noremap=false})
 vim.api.nvim_set_keymap("n", "bn", ":bnext<enter>", {noremap=false})
 vim.api.nvim_set_keymap("n", "bd", ":bdelete<enter>", {noremap=false})
+
+-- vim test
+vim.keymap.set("n", "<leader>tn", ":TestNearest<CR>")
+vim.keymap.set("n", "<leader>tf", ":TestFile<CR>") 
+vim.keymap.set("n", "<leader>ts", ":TestSuite<CR>") 
+vim.keymap.set("n", "<leader>tl", ":TestLast<CR>") 
+vim.keymap.set("n", "<leader>tv", ":TestVisit<CR>") 

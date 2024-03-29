@@ -59,5 +59,13 @@ return require('packer').startup(function(use)
 
  use({ 'github/copilot.vim' })
 
- use({ 'vim-test/vim-test' })
+ use {
+     'vim-test/vim-test',
+     dependencies = {
+        "preservim/vimux",
+     }
+ }
+
+ use ({ "preservim/vimux" })
+
 end)
