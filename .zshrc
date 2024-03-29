@@ -4,7 +4,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
@@ -70,15 +69,14 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git asdf git-open)
+plugins=(git asdf)
 
 source $ZSH/oh-my-zsh.sh
 
-source ~/.exports
-if [ -f ~/.secrets ]; then
-  source ~/.secrets
-fi
-source ~/.aliases
+[ -f ~/.exports ] && source ~/.exports
+[ -f ~/.secrets ] && source ~/.secrets
+[ -f ~/.aliases ] && source ~/.aliases
+[ -f ~/.local_exports ] && source ~/.local_exports
 
 # User configuration
 
@@ -108,22 +106,17 @@ source ~/.aliases
 
 # vim mode
 bindkey -v
-source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 # ctrl+r search in vim mode
-# bindkey "^R" history-incremental-search-backward
+bindkey "^R" history-incremental-search-backward
 
 eval "$(zoxide init --cmd cd zsh)"
 
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-#nvm use --silent v19.5.0
+if [ -x "$(command -v fnm)" ]; then
+    eval "$(fnm env --use-on-cd)"
+    fnm use --install-if-missing v21.7.1 1>/dev/null
+fi
 
-# export PYENV_ROOT="$HOME/.pyenv"
-# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
-
-# eval "$(pyenv virtualenv-init -)"
-
-export PATH="$PATH:$HOME/.local/bin"
+if [ -x "$(command -v fzf)" ]; then
+    eval "$(fzf --zsh)"
+fi

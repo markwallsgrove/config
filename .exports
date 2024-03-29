@@ -7,6 +7,7 @@ export GIT_WORKSPACE=~/projects
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 export PATH="$PATH:/home/markwallsgrove/go/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 export TERMINAL=gnome-terminal
 
