@@ -58,3 +58,9 @@ vim.keymap.set("n", "<leader>tf", ":TestFile<CR>")
 vim.keymap.set("n", "<leader>ts", ":TestSuite<CR>") 
 vim.keymap.set("n", "<leader>tl", ":TestLast<CR>") 
 vim.keymap.set("n", "<leader>tv", ":TestVisit<CR>") 
+
+-- yank to clipboard
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+
+--format code using LSP
+vim.keymap.set("n", "<leader>fmd", vim.lsp.buf.format)
