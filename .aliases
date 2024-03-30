@@ -87,3 +87,6 @@ alias listAWSProfiles="aws configure list-profiles"
 yq() {
   docker run --rm -i -v "${PWD}":/workdir mikefarah/yq "$@"
 }
+
+alias vim="nvim"
+alias vi="nvim"
