@@ -68,4 +68,6 @@ return require('packer').startup(function(use)
 
  use ({ "preservim/vimux" })
 
+ use ({ "terrortylor/nvim-comment" })
+
 end)
