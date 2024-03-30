@@ -64,3 +64,6 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 
 --format code using LSP
 vim.keymap.set("n", "<leader>fmd", vim.lsp.buf.format)
+
+-- markdown preview
+vim.keymap.set("n", "<leader>mp", ":MarkdownPreview<CR>")
