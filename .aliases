@@ -20,9 +20,9 @@ alias gcot="git checkout --theirs"
 alias gom="git checkout master; git pull origin master"
 alias gma="git rebase --abort";
 alias gpo="branchName=\`git rev-parse --abbrev-ref HEAD\`; git push origin \$branchName";
-alias gpof="gpo -f"
+alias gpof="gpo -f --force-with-lease --force-if-includes"
 alias gponv="gpo --no-verify";
-alias gponvf="gponv -f";
+alias gponvf="gponv -f --force-with-lease --force-if-includes";
 alias grma="GIT_EDITOR=true git rebase -i main"
 alias grm="branchName=\`git rev-parse --abbrev-ref HEAD\`; gpo; gom; git checkout \$branchName; git rebase -i master";
 alias grmas="git rebase -i master --autosquash"
